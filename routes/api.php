@@ -37,5 +37,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('posts', [WebSitePostsController::class, 'index']);
 Route::post('subscriber', [StoreSubscriberController::class, 'store']);
-Route::get('posts/{website}', [SportController::class, 'index']);
-Route::post('post/create', [SportController::class, 'store']);
+Route::post('posts/sport', [SportController::class, 'store']);

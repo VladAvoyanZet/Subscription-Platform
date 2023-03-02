@@ -3,14 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sport;
-use App\Services\CreatePostService;
+use App\Services\CreateSportPostService;
 use Illuminate\Http\Request;
 class SportController extends Controller
 {
-    public function store(Request $request, CreatePostService $createPostService)
+    public function store(Request $request, CreateSportPostService $createSportPostService)
     {
+
+        $request->validate([
+            'title'       => 'required',
+            'description' => 'required'
+        ]);
+
         $data = $request->all();
-        dd($data);
-//        $createPostService->CreatePosts();
+
+        $createSportPostService->CreatePosts($data);
     }
 }
