@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\StoreSubscriberController;
 use App\Http\Controllers\WebSitePostsController;
@@ -42,3 +43,4 @@ Route::get('subscribers', [WebSitePostsController::class, 'index']);
 //});
 Route::post('subscriber/create', [StoreSubscriberController::class, 'store']);
 Route::post('posts/sport', [SportController::class, 'store']);
+Route::post('posts/news', [NewsController::class, 'store']);
