@@ -3,6 +3,7 @@
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\StoreSubscriberController;
 use App\Http\Controllers\WebSitePostsController;
+use App\Models\Sport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //});
 
 
-Route::get('posts', [WebSitePostsController::class, 'index']);
-Route::post('subscriber', [StoreSubscriberController::class, 'store']);
+Route::get('subscribers', [WebSitePostsController::class, 'index']);
+//Route::get('subscribers/{subs}', function (Request $request, $hg) {
+//    dd($hg);
+//});
+Route::post('subscriber/create', [StoreSubscriberController::class, 'store']);
 Route::post('posts/sport', [SportController::class, 'store']);

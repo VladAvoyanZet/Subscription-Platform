@@ -9,7 +9,6 @@ class SportController extends Controller
 {
     public function store(Request $request, CreateSportPostService $createSportPostService)
     {
-
         $request->validate([
             'title'       => 'required',
             'description' => 'required'
