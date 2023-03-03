@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\SubscriberResource;
 use App\Http\Resources\WebSiteResource;
 use App\Models\Site;
-use App\Services\WebSiteService;
+use App\Services\Website\DestroyWebSiteService;
+use App\Services\Website\ShoWebSiteService;
+use App\Services\Website\StoreWebSiteService;
 use Illuminate\Http\Request;
 
 class WebSiteController extends Controller
@@ -21,22 +22,22 @@ class WebSiteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, WebSiteService $webSiteController)
+    public function store(Request $request, StoreWebSiteService $webSiteController)
     {
         $request->validate([
             'title' => 'required',
             'description' => 'required',
         ]);
         $response = $request->all();
-        return $webSiteController->storeSubs($response);
+         $webSiteController->storeWebSite($response);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, ShoWebSiteService $showWebSiteService)
     {
-        //
+        $showWebSiteService->showWebsite($id);
     }
 
     /**
@@ -50,8 +51,8 @@ class WebSiteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, DestroyWebSiteService $destroyWebSiteService)
     {
-        //
+        $destroyWebSiteService->deleteWebsite($id);
     }
 }

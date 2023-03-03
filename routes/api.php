@@ -41,9 +41,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    dd($hg);
 //});
 
-
+/**
+ * API's for subscribers
+ *
+ */
 Route::get('subscribers', [SubscribersController::class, 'index']);
 Route::post('subscribers', [SubscribersController::class, 'store']);
 Route::get('subscribers/{id}', [SubscribersController::class, 'show']);
+Route::delete('subscribers/{id}', [SubscribersController::class, 'destroy']);
+
+/**
+ * API's for website
+ */
+
 Route::get('website', [WebSiteController::class, 'index']);
 Route::post('website', [WebSiteController::class, 'store']);
+Route::get('website/{id}', [WebSiteController::class, 'show']);
+Route::delete('website/{id}', [WebSiteController::class, 'destroy']);

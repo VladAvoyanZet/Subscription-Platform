@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreSubscriberRequest;
 use App\Http\Resources\SubscriberResource;
 use App\Models\Subscriber;
-use App\Services\ShowSubscriberService;
-use App\Services\StoreSubscriberService;
+use App\Services\Subscribers\DestroySubscriberService;
+use App\Services\Subscribers\ShowSubscriberService;
+use App\Services\Subscribers\StoreSubscriberService;
 use Illuminate\Http\Request;
 
 class SubscribersController extends Controller
@@ -52,8 +52,8 @@ class SubscribersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, DestroySubscriberService $deleteSub)
     {
-        //
+         $deleteSub->deleteSubscriber($id);
     }
 }

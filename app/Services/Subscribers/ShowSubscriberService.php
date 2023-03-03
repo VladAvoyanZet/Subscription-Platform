@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Subscribers;
 
-use App\Models\Subscriber;
 use Illuminate\Support\Facades\DB;
 
 class ShowSubscriberService

@@ -10,4 +10,9 @@ class Site extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'description'];
+
+    public function subscriber()
+    {
+        return $this->belongsToMany(Subscriber::class);
+    }
 }
