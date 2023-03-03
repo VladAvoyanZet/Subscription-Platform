@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\News;
-use App\Models\Sport;
+use App\Models\Site;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,7 +19,6 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-//        Sport::factory()->count(10)->create();
-//        News::factory()->count(10)->create();
+        Site::factory()->count(3)->create();
     }
 }

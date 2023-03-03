@@ -7,14 +7,12 @@ use App\Models\Subscriber;
 class StoreSubscriberService
 {
 
-    /**create Subscribers method
-     * @param $subs
-     * @return void
-     */
-    public function storeSubs($subs): void
+    /**  create Subscribers method  */
+
+    public function storeSubs($request)
     {
-        echo  Subscriber::create([
-            'email' => $subs['email']
+       return Subscriber::create([
+            'email' => $request['email']
         ]);
     }
 
