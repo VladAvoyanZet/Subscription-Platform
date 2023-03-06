@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PostResource;
+use App\Http\Resources\SubscriberResource;
 use App\Mail\DemoMail;
 use App\Models\Post;
+use App\Models\Subscribers;
 use App\Services\Post\DestroyPostService;
 use App\Services\Post\ShowPostService;
 use App\Services\Post\StorePostService;
@@ -18,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return PostResource::collection(Post::all());
+        return PostResource::collection(Subscribers::all());
     }
 
     /**

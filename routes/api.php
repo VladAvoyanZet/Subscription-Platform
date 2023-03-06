@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\WebSiteController;
+use App\Models\Subscribers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +31,13 @@ Route::get('website', [WebSiteController::class, 'index']);
 Route::post('website', [WebSiteController::class, 'store']);
 Route::get('website/{id}', [WebSiteController::class, 'show']);
 Route::delete('website/{id}', [WebSiteController::class, 'destroy']);
+
+Route::get('subscribers', [SubscriberController::class, 'index']);
+Route::post('subscribers/create', [SubscriberController::class, 'store']);
+Route::get('subscribers/{id}', [SubscriberController::class, 'show']);
+Route::delete('subscribers/{id}', [SubscriberController::class, 'destroy']);
+
+
 
 Route::prefix('post')->group(function () {
     Route::get('get', [PostController::class, 'index']);
