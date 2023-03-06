@@ -2,27 +2,24 @@
 
 namespace Database\Factories;
 
-use App\Models\Site;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Site>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
  */
-class SiteFactory extends Factory
+class PostFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-
-    protected $model = Site::class;
-
     public function definition(): array
     {
         return [
-            'email' => $this->faker->email,
-            'url' => $this->faker->domainName,
+            'websiteId' => $this->faker->numberBetween(1,3),
+            'title'     => $this->faker->title,
+            'description'     => $this->faker->text,
         ];
     }
 }

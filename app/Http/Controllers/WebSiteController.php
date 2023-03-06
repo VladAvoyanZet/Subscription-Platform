@@ -8,13 +8,15 @@ use App\Services\Website\DestroyWebSiteService;
 use App\Services\Website\ShoWebSiteService;
 use App\Services\Website\StoreWebSiteService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Validator;
 
 class WebSiteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
         return WebSiteResource::collection(Site::all()) ;
     }
@@ -25,11 +27,11 @@ class WebSiteController extends Controller
     public function store(Request $request, StoreWebSiteService $webSiteController)
     {
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'email' => 'required|unique:sites',
+            'url' => 'required|unique:sites',
         ]);
         $response = $request->all();
-         $webSiteController->storeWebSite($response);
+         $webSiteController->storeSubscriberWebSite($response);
     }
 
     /**

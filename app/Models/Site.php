@@ -9,10 +9,11 @@ class Site extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description'];
+    protected $fillable = ['email', 'url'];
 
-    public function subscriber()
+    public function posts()
     {
-        return $this->belongsToMany(Subscriber::class);
+        return $this->hasMany(Post::class);
     }
-}
+
+  }

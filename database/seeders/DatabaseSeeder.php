@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Post;
+use App\Models\PostSite;
 use App\Models\Site;
+use App\Models\Subscriber;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,13 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
-        Site::factory()->count(3)->create();
+        Site::factory()->count(5)->create();
+        Post::factory()->count(5)->create();
     }
 }

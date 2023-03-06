@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\StoreSubscriberController;
 use App\Http\Controllers\SubscribersController;
+use App\Http\Controllers\SubscriberWebsiteController;
 use App\Http\Controllers\WebSiteController;
 use App\Http\Controllers\WebSitePostsController;
 use App\Models\Sport;
@@ -45,10 +47,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  * API's for subscribers
  *
  */
-Route::get('subscribers', [SubscribersController::class, 'index']);
-Route::post('subscribers', [SubscribersController::class, 'store']);
-Route::get('subscribers/{id}', [SubscribersController::class, 'show']);
-Route::delete('subscribers/{id}', [SubscribersController::class, 'destroy']);
+//Route::get('subscribers', [SubscribersController::class, 'index']);
+//Route::post('subscribers', [SubscribersController::class, 'store']);
+//Route::get('subscribers/{id}', [SubscribersController::class, 'show']);
+//Route::delete('subscribers/{id}', [SubscribersController::class, 'destroy']);
 
 /**
  * API's for website
@@ -58,3 +60,10 @@ Route::get('website', [WebSiteController::class, 'index']);
 Route::post('website', [WebSiteController::class, 'store']);
 Route::get('website/{id}', [WebSiteController::class, 'show']);
 Route::delete('website/{id}', [WebSiteController::class, 'destroy']);
+
+Route::prefix('post')->group(function () {
+    Route::get('get', [PostController::class, 'index']);
+    Route::post('create', [PostController::class, 'store']);
+    Route::get('view/{id}', [PostController::class, 'show']);
+    Route::delete('delete/{id}', [PostController::class, 'destroy']);
+});
