@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PostResource;
+use App\Mail\DemoMail;
 use App\Models\Post;
 use App\Services\Post\DestroyPostService;
 use App\Services\Post\ShowPostService;
 use App\Services\Post\StorePostService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {
@@ -16,16 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-//        $posts = Post::all();
-//        $result = [];
-//        foreach ($posts as $post) {
-//            $result[] = [
-//                'title' => $post->title,
-//                'website' => $post->site
-//            ];
-//        }
-//        return $result;
-        return PostResource::collection(Post::all()) ;
+        return PostResource::collection(Post::all());
     }
 
     /**
@@ -38,8 +31,12 @@ class PostController extends Controller
             'title' => 'required',
             'description' => 'required',
         ]);
+
         $response = $request->all();
         $storePostService->storePost($response);
+
+
+
     }
 
     /**
