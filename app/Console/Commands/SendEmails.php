@@ -2,7 +2,12 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\PostController;
+use App\Http\Resources\PostResource;
 use App\Mail\DemoMail;
+use App\Models\Post;
+use App\Services\Mail\SendToEmailsService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
@@ -27,8 +32,7 @@ class SendEmails extends Command
      */
     public function handle(): void
     {
-        Mail::to('your_email@gmail.com')->send(new DemoMail(''));
-
-        dd("Email is sent successfully.");
+      $mail = new SendToEmailsService();
+      $mail->sendEmails();
     }
 }

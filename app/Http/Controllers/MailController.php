@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostResource;
 use App\Mail\DemoMail;
+use App\Models\Post;
+use App\Services\Mail\SendNewPostsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use JetBrains\PhpStorm\NoReturn;
 
 class MailController extends Controller
 {
-    #[NoReturn] public function send()
+     public function getNewPost()
     {
-        Mail::to('your_email@gmail.com')->send(new DemoMail(''));
-
-        dd("Email is sent successfully.");
+        $getNewPosts = new SendNewPostsService();
+        $getNewPosts->getNewPosts();
     }
 }

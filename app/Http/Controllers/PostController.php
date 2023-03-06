@@ -34,9 +34,6 @@ class PostController extends Controller
 
         $response = $request->all();
         $storePostService->storePost($response);
-
-
-
     }
 
     /**
