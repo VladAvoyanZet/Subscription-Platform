@@ -10,6 +10,7 @@ use App\Services\Subscribers\DeleteSubscriberService;
 use App\Services\Subscribers\ShowSubscriberService;
 use App\Services\Subscribers\StoreSubscribersService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SubscriberController extends Controller
 {
@@ -26,12 +27,19 @@ class SubscriberController extends Controller
      */
     public function store(Request $request, StoreSubscribersService $storeSubscribersService)
     {
-        $request->validate([
-            'email' => 'required|unique:subscribers',
+        $validator = Validator::make($request->all(), [
+            'email' =>'required|unique:subscribers'
         ]);
-        $response = $request->all();
+        if ($validator->fails()){
+            return response()->json([
+                'status:' => 400,
+                'message:' => 'something went wrong'
+            ],400);
+        }else {
 
-        $storeSubscribersService->storeSubscriber($response);
+        $storeSubscribersService->storeSubscriber($request);
+        }
+
     }
 
     /**

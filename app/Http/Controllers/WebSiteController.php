@@ -26,12 +26,17 @@ class WebSiteController extends Controller
      */
     public function store(Request $request, StoreWebSiteService $webSiteController)
     {
-        $request->validate([
-            'email' => 'required|unique:sites',
+        $validator = Validator::make($request->all(), [
             'url' => 'required|unique:sites',
         ]);
-        $response = $request->all();
-         $webSiteController->storeSubscriberWebSite($response);
+        if ($validator->fails()) {
+            return response()->json([
+                'status:' => 400,
+                'message:' => 'something went wrong'
+            ], 400);
+        } else {
+            $webSiteController->storeSubscriberWebSite($request);
+        }
     }
 
     /**

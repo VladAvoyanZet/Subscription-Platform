@@ -40,6 +40,7 @@ class DemoMail extends Mailable
     {
         return new Content(
             view: 'demoEmail'
+
         );
     }
 

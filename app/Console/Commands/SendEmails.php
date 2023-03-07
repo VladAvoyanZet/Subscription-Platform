@@ -7,7 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Resources\PostResource;
 use App\Mail\DemoMail;
 use App\Models\Post;
-use App\Services\Mail\SendToEmailsService;
+use App\Services\Mail\SendEmailService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
@@ -32,7 +32,7 @@ class SendEmails extends Command
      */
     public function handle(): void
     {
-      $mail = new SendToEmailsService();
-      $mail->sendEmails();
+      $con = new MailController();
+      $con->index();
     }
 }

@@ -9,11 +9,12 @@ class Site extends Model
 {
     use HasFactory;
 
+    protected $table = 'sites';
     protected $fillable = ['url'];
 
-    public function posts()
+    public function posts(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class, "websiteId");
     }
 
   }

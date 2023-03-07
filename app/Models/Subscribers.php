@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Subscribers extends Model
 {
     use HasFactory;
-
+    protected $table = 'subscribers';
     protected $fillable = ['email', 'websiteId'];
 
-    public function sites()
+    public function site()
     {
         return $this->belongsTo(Site::class, 'websiteId');
     }

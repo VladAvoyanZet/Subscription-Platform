@@ -3,15 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PostResource;
-use App\Http\Resources\SubscriberResource;
-use App\Mail\DemoMail;
-use App\Models\Post;
 use App\Models\Subscribers;
 use App\Services\Post\DestroyPostService;
 use App\Services\Post\ShowPostService;
 use App\Services\Post\StorePostService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -28,14 +25,20 @@ class PostController extends Controller
      */
     public function store(Request $request, StorePostService $storePostService)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'websiteId' => 'required',
             'title' => 'required',
             'description' => 'required',
         ]);
+        if ($validator->fails()){
+            return response()->json([
+                'status:' => 400,
+                'message:' => 'something went wrong'
+            ],400);
+        }else {
 
-        $response = $request->all();
-        $storePostService->storePost($response);
+            $storePostService->storePost($request);
+        }
     }
 
     /**
