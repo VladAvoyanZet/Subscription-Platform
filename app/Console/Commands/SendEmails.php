@@ -10,6 +10,7 @@ use App\Models\Post;
 use App\Services\Mail\SendEmailService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
+use JetBrains\PhpStorm\NoReturn;
 
 class SendEmails extends Command
 {
@@ -30,7 +31,7 @@ class SendEmails extends Command
     /**
      * Execute the console command.
      */
-    public function handle(): void
+    #[NoReturn] public function handle(): void
     {
       $con = new MailController();
       $con->index();

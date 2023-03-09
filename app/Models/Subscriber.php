@@ -9,7 +9,7 @@ class Subscriber extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['email'];
+    protected $fillable = ['email', 'is_sent'];
 
     public function sites(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

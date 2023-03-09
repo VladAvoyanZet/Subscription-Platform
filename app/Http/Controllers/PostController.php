@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\Models\Subscriber;
-use App\Models\Subscribers;
 use App\Services\Post\DestroyPostService;
+use App\Services\Post\IndexPostsService;
 use App\Services\Post\ShowPostService;
 use App\Services\Post\StorePostService;
 use App\Services\Post\UpdatePostService;
@@ -18,9 +18,10 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(IndexPostsService $indexPostsService)
     {
-        return PostResource::collection(Post::all());
+      return  $indexPostsService->indexPosts();
+
     }
 
     /**

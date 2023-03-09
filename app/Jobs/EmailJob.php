@@ -15,15 +15,17 @@ class EmailJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     public $emails;
     public $posts;
+    public $domains;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($emails, $posts)
+    public function __construct($emails, $posts, $domains)
     {
         $this->emails = $emails;
         $this->posts = $posts;
+        $this->domains = $domains;
     }
 
     /**
@@ -31,6 +33,6 @@ class EmailJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to($this->emails)->send(new DemoMail($this->posts));
+        Mail::to($this->emails)->send(new DemoMail($this->posts, $this->domains));
     }
 }

@@ -9,4 +9,6 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['is_post_sent'];
+
 }
