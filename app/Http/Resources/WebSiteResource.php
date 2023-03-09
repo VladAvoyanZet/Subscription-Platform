@@ -15,8 +15,8 @@ class WebSiteResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'email' => $this->email,
-            'url'   => $this->url
+            'domain' => $this->domain,
+            'subscriber_id'   => $this->subscriber_id
         ];
     }
 }

@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Subscribers>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Subscriber>
  */
-class SubscribersFactory extends Factory
+class SubscriberFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,7 @@ class SubscribersFactory extends Factory
     public function definition(): array
     {
         return [
-            "email" => $this->faker->email,
-            "websiteId" => $this->faker->numberBetween(1,4)
+            'email' => $this->faker->email
         ];
     }
 }

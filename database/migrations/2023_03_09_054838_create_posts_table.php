@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('websiteId');
-            $table->foreign('websiteId')->references('id')->on('sites')->onDelete('cascade');
-            $table->text('title')->nullable();
+            $table->string('title');
             $table->text('description');
+            $table->foreignId('site_id')->constrained();
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Jobs\EmailJob;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,14 +14,14 @@ class DemoMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $maildata;
+    public $posts;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($maildata)
+    public function __construct($posts)
     {
-        $this->maildata=$maildata;
+        $this->posts = $posts;
     }
 
     /**

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PostResource;
+use App\Models\Post;
+use App\Models\Subscriber;
 use App\Models\Subscribers;
 use App\Services\Post\DestroyPostService;
 use App\Services\Post\ShowPostService;
 use App\Services\Post\StorePostService;
+use App\Services\Post\UpdatePostService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return PostResource::collection(Subscribers::all());
+        return PostResource::collection(Post::all());
     }
 
     /**
@@ -53,9 +56,9 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id, UpdatePostService $updatePostService)
     {
-        //
+        $updatePostService->updatePost($request, $id);
     }
 
     /**

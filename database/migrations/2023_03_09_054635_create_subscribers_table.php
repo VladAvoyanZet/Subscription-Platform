@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('subscribers', function (Blueprint $table) {
             $table->id();
             $table->string('email');
-            $table->unsignedBigInteger('websiteId');
-            $table->foreign('websiteId')->references('id')->on('sites')->onDelete('cascade');
             $table->timestamps();
         });
     }

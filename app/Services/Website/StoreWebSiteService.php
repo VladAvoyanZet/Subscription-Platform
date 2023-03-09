@@ -2,7 +2,6 @@
 
 namespace App\Services\Website ;
 
-use App\Models\PostSite;
 use App\Models\Site;
 
 class StoreWebSiteService
@@ -10,8 +9,8 @@ class StoreWebSiteService
     public function storeSubscriberWebSite($request): void
     {
         $response = Site::create([
-            'email' => $request['email'],
-            'url' => $request['url']
+            'domain' => $request['domain'],
+            'subscriber_id' => $request['subscriber_id']
         ]);
 
         if ($response) {

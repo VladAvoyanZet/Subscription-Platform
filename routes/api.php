@@ -43,5 +43,6 @@ Route::prefix('post')->group(function () {
     Route::get('get', [PostController::class, 'index']);
     Route::post('create', [PostController::class, 'store']);
     Route::get('view/{id}',  [PostController::class, 'show']);
+    Route::put('update/{id}',  [PostController::class, 'update']);
     Route::delete('delete/{id}', [PostController::class, 'destroy']);
 });

@@ -17,7 +17,8 @@ class SiteFactory extends Factory
     public function definition(): array
     {
         return [
-            'url' => $this->faker->domainName
+            'domain' => $this->faker->domainName,
+            'subscriber_id' => $this->faker->numberBetween(1,3)
         ];
     }
 }

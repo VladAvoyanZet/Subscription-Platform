@@ -25,7 +25,4 @@ class StorePostService
             echo "Message: something went wrong";
         }
     }
-
-
-
 }

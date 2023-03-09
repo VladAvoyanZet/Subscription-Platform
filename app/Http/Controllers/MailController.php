@@ -2,34 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\PostResource;
-use App\Mail\DemoMail;
-use App\Models\Post;
+
+use App\Jobs\EmailJob;
 use App\Models\Site;
-use App\Models\Subscribers;
-use App\Services\Mail\SendEmailService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
+use App\Models\Subscriber;
 use JetBrains\PhpStorm\NoReturn;
 
 class MailController extends Controller
 {
-     #[NoReturn] public function index()
+    #[NoReturn] public function index()
     {
-        $subscribers = Subscribers::all();
+        $posts = Site::with('posts')->get();
+        $subscribers = Subscriber::all()->toArray();
+
+        $ids = [];
+        foreach ($posts as $post) {
+            $ids[] = $post;
+        }
 
         foreach ($subscribers as $subscriber) {
-         $websites = Site::where('id', 'LIKE', '%'. $subscriber['websiteId'])->with('posts')->get();
-         ;
+            foreach ($ids as $id) {
+                if ($subscriber['id'] == $id->subscriber_id && $id->posts->isNotEmpty()){
+                    dispatch(new EmailJob($subscriber['email'], $id->posts));
+                }
+            };
+
         }
-         dd($websites);
-
-//        foreach ($subscribers as $subscriber) {
-//            echo $subscriber['email'];
-//            }
-
-//        Mail::to($email['websiteId'])->send(new DemoMail(''));
-//        $websites = Site::whereHas('posts')->with('posts')->get();//////////////
-     }
+    }
 }
