@@ -17,7 +17,6 @@ class MailController extends Controller
     {
         $subscribers = Subscriber::all();
 
-
         $check = new CheckSentStatusService();
 
         foreach ($subscribers->chunk(3) as $subscriber) {

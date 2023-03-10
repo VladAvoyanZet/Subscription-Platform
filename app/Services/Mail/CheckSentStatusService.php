@@ -14,18 +14,26 @@ class CheckSentStatusService
     #[NoReturn] public function checkStatus($subscribers): void
     {
         $posts = Site::with('posts')->get();
-        $ids = [];
+        $posts->chunk(4, function ($po){
+        });
+
         foreach ($posts as $post) {
             $ids[] = $post;
         };
+        $duplicate = new DuplicateMailService();
 
         foreach ($subscribers as $subscriber) {
-        foreach ($ids as $id) {
-            if ($subscriber['id'] == $id->subscriber_id && $id->posts->isNotEmpty()){
-                dd($subscriber['is_sent'],$id->posts['is_post_sent']);
-                print_r($subscriber);
-                    dispatch(new EmailJob($subscriber['email'], $id->posts, $id->domain));
-                 }
+          foreach ($ids as $id) {
+                 if ($subscriber['id'] == $id->subscriber_id && $id->posts->isNotEmpty()){
+                     foreach ($id->posts as $post) {
+                         if ($subscriber['is_sent'] == 0){
+                             dispatch(new EmailJob($subscriber['email'], $id->posts));
+                              $duplicate->checkDuplicate($subscriber['id'], $post->id);
+                         }else {
+                             dd('Mail Already Sanded');
+                         }
+                     }
+                }
             }
         }
     }
