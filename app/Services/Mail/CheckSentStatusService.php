@@ -30,9 +30,8 @@ class CheckSentStatusService
                  if ($subscriber['id'] == $id->subscriber_id && $id->posts->isNotEmpty()){
                      foreach ($id->posts as $post) {
                          if ($subscriber['is_sent'] == 0){
-                              EmailJob::dispatch($subscriber['email'])->onQueue('email');
-//                             dispatch(new EmailJob($subscriber['email'], $id->posts));
-                              $duplicate->checkDuplicate($subscriber['id'], $post->id);
+                             $duplicate->checkDuplicate($subscriber['id'], $post->id);
+                             EmailJob::dispatch($subscriber['email'], $id->posts)->onQueue('email');
                          }else {
                              dd('Mail Already Sanded');
                          }

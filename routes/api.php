@@ -33,10 +33,6 @@ Route::post('website', [WebSiteController::class, 'store']);
 Route::get('website/{id}', [WebSiteController::class, 'show']);
 Route::delete('website/{id}', [WebSiteController::class, 'destroy']);
 
-Route::get('ho', function (){
-    EmailJob::dispatch('something@fg.com');
-
-});
 Route::get('subscribers', [SubscriberController::class, 'index']);
 Route::post('subscribers/create', [SubscriberController::class, 'store']);
 Route::get('subscribers/{id}', [SubscriberController::class, 'show']);

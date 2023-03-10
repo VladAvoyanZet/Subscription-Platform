@@ -27,9 +27,10 @@ class PostController extends Controller
     public function store(Request $request, StorePostService $storePostService)
     {
         $validator = Validator::make($request->all(), [
-            'websiteId' => 'required',
+            'site_id' => 'required',
             'title' => 'required',
             'description' => 'required',
+            'is_post_sent' => 'required',
         ]);
         if ($validator->fails()){
             return response()->json([

@@ -13,9 +13,10 @@ class StorePostService
     public function storePost($request)
     {
         $data = [
-            'websiteId' => $request['websiteId'],
+            'site_id' => $request['site_id'],
             'title' => $request['title'],
-            'description' => $request['description']
+            'description' => $request['description'],
+            'is_post_sent' => $request['is_post_sent']
         ];
         $response = Post::create($data);
 
