@@ -3,13 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Http\Controllers\MailController;
-use App\Http\Controllers\PostController;
-use App\Http\Resources\PostResource;
-use App\Mail\DemoMail;
-use App\Models\Post;
-use App\Services\Mail\SendEmailService;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Mail;
 use JetBrains\PhpStorm\NoReturn;
 
 class SendEmails extends Command

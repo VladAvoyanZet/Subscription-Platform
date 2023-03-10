@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\PostResource;
-use App\Models\Post;
-use App\Models\Subscriber;
 use App\Services\Post\DestroyPostService;
 use App\Services\Post\IndexPostsService;
 use App\Services\Post\ShowPostService;

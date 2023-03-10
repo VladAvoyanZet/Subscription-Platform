@@ -22,6 +22,7 @@ class DemoMail extends Mailable
     public function __construct($posts)
     {
         $this->posts = $posts;
+
     }
 
     /**
@@ -41,7 +42,6 @@ class DemoMail extends Mailable
     {
         return new Content(
             view: 'demoEmail'
-
         );
     }
 
