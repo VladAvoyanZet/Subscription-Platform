@@ -14,9 +14,8 @@ class CheckSentStatusService
     #[NoReturn] public function checkStatus($subscribers): void
     {
         $posts = Site::with('posts')->get();
-        $posts->chunk(4, function ($po){
-        });
 
+        $ids = [];
         foreach ($posts as $post) {
             $ids[] = $post;
         };
