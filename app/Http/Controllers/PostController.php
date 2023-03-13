@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index(IndexPostsService $indexPostsService)
     {
-      return  $indexPostsService->indexPosts();
+        return $indexPostsService->indexPosts();
 
     }
 
@@ -32,12 +32,12 @@ class PostController extends Controller
             'description' => 'required',
             'is_post_sent' => 'required',
         ]);
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return response()->json([
                 'status:' => 400,
                 'message:' => 'something went wrong'
-            ],400);
-        }else {
+            ], 400);
+        } else {
 
             $storePostService->storePost($request);
         }

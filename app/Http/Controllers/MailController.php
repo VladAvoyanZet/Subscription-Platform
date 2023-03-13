@@ -16,7 +16,7 @@ use JetBrains\PhpStorm\NoReturn;
 
 class MailController extends Controller
 {
-    #[NoReturn] public function index( )
+    #[NoReturn] public function index()
     {
 
         $subscribers = Subscriber::all();

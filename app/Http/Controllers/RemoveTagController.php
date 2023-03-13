@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class RemoveTagController extends Controller
 {
-    public function removeTagsFromDB( )
+    public function removeTagsFromDB()
     {
         $rem = new RemoveTagsService();
         $posts = Post::all();
@@ -17,8 +17,8 @@ class RemoveTagController extends Controller
 
         foreach ($posts as $post) {
             foreach ($subscribers as $subscriber) {
-                $rem->remove($post,$subscriber);
+                $rem->remove($post, $subscriber);
             }
-         }
+        }
     }
 }

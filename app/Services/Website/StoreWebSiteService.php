@@ -10,7 +10,8 @@ class StoreWebSiteService
     {
         $response = Site::create([
             'domain' => $request['domain'],
-            'subscriber_id' => $request['subscriber_id']
+            'subscriber_id' => $request['subscriber_id'],
+            'is_sent' => $request['is_sent']
         ]);
 
         if ($response) {

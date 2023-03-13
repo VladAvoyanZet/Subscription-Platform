@@ -3,21 +3,21 @@
 namespace App\Services\Subscribers;
 
 
-use App\Models\Subscribers;
+use App\Models\Subscriber;
 
 class StoreSubscribersService
 {
 
     public function storeSubscriber($request)
     {
-        $response = Subscribers::create([
+        $response = Subscriber::create([
             'email' => $request['email'],
-            'websiteId' => $request['websiteId'],
+            'is_sent' => $request['is_sent'],
         ]);
 
         if ($response) {
             echo 'Message: Subscriber successfully created';
-        }else {
+        } else {
             echo "Message: something went wrong";
         }
 

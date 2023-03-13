@@ -30,6 +30,7 @@ class WebSiteController extends Controller
         $validator = Validator::make($request->all(), [
             'domain' => 'required|unique:sites',
             'subscriber_id' => 'required',
+            'is_sent' => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json([

@@ -9,9 +9,9 @@ class DestroyPostService
     public function destroyPost($id): void
     {
         $tab = DB::table('posts')->where('id', '=', $id)->delete();
-        if ($tab){
+        if ($tab) {
             echo "Message: Post successfully deleted";
-        }else {
+        } else {
             echo "Message: something went wrong";
         }
     }
