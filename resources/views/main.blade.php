@@ -21,13 +21,12 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Subscriber Id</label>
-                <input type="number" name="email" class="form-control" id="subscriberId" aria-describedby="emailHelp" placeholder="Enter subscriber Id">
+                <input type="number" name="subscriber_id" class="form-control" id="subscriberId" aria-describedby="emailHelp" placeholder="Enter subscriber Id">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>
-</body>
 <script type="text/javascript">
     $(document).ready(function(){
         $.ajaxSetup({
@@ -41,19 +40,26 @@
             $.ajax({
                 type: 'POST',
                 url: '/subscribe/store',
+                processData: false,
+                dataType: 'json',
+                contentType:false,
                 data: {'domain':domain, 'subscriber_id': subscriber_id},
                 beforeSend: function (request) {
                     return request.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'));
                 },
                 success:function(response)
                 {
-                    alert(response.success)
+                    if(response.success === true ){
+                        alert('success');
+                    }
                 },
-                error: function(response) {
-                    alert('fail')
+                error: function(errors) {
+
+
                 }
             })
         })
     });
 </script>
+</body>
 </html>

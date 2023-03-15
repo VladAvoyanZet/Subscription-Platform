@@ -6,7 +6,7 @@ use App\Models\Site;
 
 class StoreWebSiteService
 {
-    public function storeSubscriberWebSite($request): \Illuminate\Http\JsonResponse
+    public function storeSubscriberWebSite($request)
     {
         $response = Site::create([
             'domain' => $request['domain'],
@@ -14,11 +14,10 @@ class StoreWebSiteService
         ]);
 
         if ($response) {
-            echo 'Message: Website successfully created';
-            return response()->json(['success'=>'Laravel ajax example is being processed.']);
+            return redirect()->route('subscribe.create');
 
         }else {
-            echo "Message: something went wrong";
+            return response()->json(['success'=>"Message: something went wrong"]);
         }
     }
 }
