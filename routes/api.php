@@ -33,7 +33,10 @@ Route::post('website', [WebSiteController::class, 'store']);
 Route::get('website/{id}', [WebSiteController::class, 'show']);
 Route::delete('website/{id}', [WebSiteController::class, 'destroy']);
 
-Route::get('subscribers', [SubscriberController::class, 'index']);
+//Route::get('subscribers', [SubscriberController::class, 'index'])->name('index');
+Route::get('/subscribers', function (){
+    return '1111';
+});
 Route::post('subscribers/create', [SubscriberController::class, 'store']);
 Route::get('subscribers/{id}', [SubscriberController::class, 'show']);
 Route::delete('subscribers/{id}', [SubscriberController::class, 'destroy']);

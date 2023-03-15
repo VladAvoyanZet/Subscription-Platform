@@ -26,7 +26,6 @@ class EmailJob implements ShouldQueue
     {
         $this->emails = $emails;
         $this->posts = $posts;
-
     }
 
     /**

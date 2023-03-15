@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\PostResource;
 use App\Http\Resources\SubscriberResource;
-use App\Models\Post;
 use App\Models\Subscriber;
 use App\Services\Subscribers\DeleteSubscriberService;
 use App\Services\Subscribers\ShowSubscriberService;
@@ -19,7 +17,7 @@ class SubscriberController extends Controller
      */
     public function index()
     {
-        return SubscriberResource::collection(Subscriber::all());
+        return  SubscriberResource::collection(Subscriber::all());
     }
 
     /**

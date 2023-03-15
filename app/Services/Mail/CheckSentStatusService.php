@@ -3,20 +3,13 @@
 namespace App\Services\Mail;
 
 use App\Jobs\EmailJob;
-use App\Mail\DemoMail;
-use App\Models\Post;
 use App\Models\Site;
-use App\Models\Subscriber;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Redis;
-use Illuminate\Support\Facades\Validator;
 use JetBrains\PhpStorm\NoReturn;
 
 class CheckSentStatusService
 {
     #[NoReturn] public function checkStatus($subscribers): void
     {
-
         $posts = Site::with('posts')->get();
 
         $ids = [];
@@ -31,12 +24,15 @@ class CheckSentStatusService
                     foreach ($id->posts as $post) {
                         if ($subscriber['is_sent'] == 0 && $post->is_sent_post == 0) {
                             $duplicate->checkDuplicate($subscriber['id'], $post->id);
-                             EmailJob::dispatch($subscriber['email'], $id->posts)->onQueue('email');
+                            EmailJob::dispatch($subscriber['email'], $id->posts)->onQueue('email');
                         } elseif ($subscriber['is_sent'] == 1 && $post->is_post_sent == 0) {
                             $duplicate->checkDuplicate($subscriber['id'], $post->id);
-                                  EmailJob::dispatch($subscriber['email'], $id->posts)->onQueue('email');
+                            EmailJob::dispatch($subscriber['email'], $id->posts)->onQueue('email');
+                        } elseif ($subscriber['is_sent'] == 0 && $post->is_post_sent == 1) {
+                            $duplicate->checkDuplicate($subscriber['id'], $post->id);
+                            EmailJob::dispatch($subscriber['email'], $id->posts)->onQueue('email');
                         } else {
-                            dd('Mail Already Sanded');
+                            echo 'Mail Already Sanded for --> ' . $subscriber['email'] . '|||';
                         }
                     }
                 }

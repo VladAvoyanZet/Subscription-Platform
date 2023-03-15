@@ -2,16 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\EmailJob;
-use App\Mail\DemoMail;
-use App\Models\Post;
-use App\Models\Site;
 use App\Models\Subscriber;
 use App\Services\Mail\CheckSentStatusService;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
+
 use JetBrains\PhpStorm\NoReturn;
 
 class MailController extends Controller

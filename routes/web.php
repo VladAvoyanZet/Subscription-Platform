@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\WebSiteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/subscribe/create', [WebSiteController::class, 'create']);
+Route::post('/subscribe/store', [WebSiteController::class, 'store'])->name('subscribe.store');

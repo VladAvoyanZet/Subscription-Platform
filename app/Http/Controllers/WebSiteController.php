@@ -9,6 +9,7 @@ use App\Services\Website\ShoWebSiteService;
 use App\Services\Website\StoreWebSiteService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use JetBrains\PhpStorm\NoReturn;
 
@@ -22,15 +23,19 @@ class WebSiteController extends Controller
         return WebSiteResource::collection(Site::all()) ;
     }
 
+    public function create()
+    {
+        return view('main');
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     #[NoReturn] public function store(Request $request, StoreWebSiteService $webSiteController)
     {
         $validator = Validator::make($request->all(), [
-            'domain' => 'required|unique:sites',
+            'domain' => 'required',
             'subscriber_id' => 'required',
-            'is_sent' => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json([
