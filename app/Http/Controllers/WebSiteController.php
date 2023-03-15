@@ -44,6 +44,7 @@ class WebSiteController extends Controller
             ], 400);
         } else {
             $webSiteController->storeSubscriberWebSite($request);
+            return redirect()->route('subscribe.create');
         }
     }
 
