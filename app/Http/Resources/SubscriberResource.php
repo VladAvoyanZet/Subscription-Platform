@@ -15,8 +15,9 @@ class SubscriberResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-        'id'    => $this->id,
-        'email' => $this->email
-    ];
+            'id'       => $this->id,
+            'email'    => $this->email,
+            'site_id'  => $this->site_id
+          ];
     }
 }

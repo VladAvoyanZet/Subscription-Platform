@@ -28,7 +28,7 @@ class SubscriberController extends Controller
     public function store(Request $request, StoreSubscribersService $storeSubscribersService)
     {
         $validator = Validator::make($request->all(), [
-            'email' =>'required|unique:subscribers'
+            'email' =>'required'
         ]);
         if ($validator->fails()){
             return response()->json([

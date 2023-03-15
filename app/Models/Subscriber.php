@@ -9,10 +9,7 @@ class Subscriber extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['email', 'is_sent'];
+    protected $fillable = ['email'];
 
-    public function sites(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(Site::class, 'subscriber_id');
-    }
+
 }

@@ -6,23 +6,18 @@ use App\Models\Site;
 
 class StoreWebSiteService
 {
-    public function storeSubscriberWebSite($request): void
+    public function storeSubscriberWebSite($request)
     {
         $response = Site::create([
             'domain' => $request['domain'],
-            'subscriber_id' => $request['subscriber_id']
+            'subscriber_id' => $request['subscriber_id'],
         ]);
 
         if ($response) {
-            echo 'Message: Website successfully created';
+            return redirect()->route('subscribe.create');
+
         }else {
-            echo "Message: something went wrong";
+            return response()->json(['success'=>"Message: something went wrong"]);
         }
     }
-
-    public function storePostSiteTable(): void
-    {
-
-    }
-
 }

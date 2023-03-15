@@ -4,7 +4,6 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\WebSiteController;
-use App\Models\Subscribers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

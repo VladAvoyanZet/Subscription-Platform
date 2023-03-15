@@ -17,7 +17,8 @@ class SubscriberFactory extends Factory
     public function definition(): array
     {
         return [
-            'email' => $this->faker->email
+            'email' => $this->faker->email,
+            'site_id' => $this->faker->numberBetween(1,3),
         ];
     }
 }

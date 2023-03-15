@@ -9,7 +9,7 @@ class ShowSubscriberService
 
     public function showSubscriber($id)
     {
-        $tab = DB::table('posts')->where('id', '=', $id)->get();
+        $tab = DB::table('subscribers')->where('id', '=', $id)->get();
         echo $tab;
     }
 

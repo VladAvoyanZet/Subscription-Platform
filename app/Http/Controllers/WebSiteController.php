@@ -10,7 +10,6 @@ use App\Services\Website\StoreWebSiteService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Validator;
-use JetBrains\PhpStorm\NoReturn;
 
 class WebSiteController extends Controller
 {
@@ -19,16 +18,16 @@ class WebSiteController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        return WebSiteResource::collection(Site::all()) ;
+        return WebSiteResource::collection(Site::all());
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    #[NoReturn] public function store(Request $request, StoreWebSiteService $webSiteController)
+    public function store(Request $request, StoreWebSiteService $webSiteController): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
     {
         $validator = Validator::make($request->all(), [
-            'domain' => 'required|unique:sites',
+            'domain' => 'required',
             'subscriber_id' => 'required',
         ]);
         if ($validator->fails()) {
@@ -38,6 +37,7 @@ class WebSiteController extends Controller
             ], 400);
         } else {
             $webSiteController->storeSubscriberWebSite($request);
+            return redirect()->route('subscribe.create')->with('success', 'Subscriber ' . $request['subscriber_id'] . ' Subscribed to ' . $request['domain'] . ' website');
         }
     }
 

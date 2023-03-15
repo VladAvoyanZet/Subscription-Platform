@@ -18,7 +18,6 @@ class SiteFactory extends Factory
     {
         return [
             'domain' => $this->faker->domainName,
-            'subscriber_id' => $this->faker->numberBetween(1,3)
         ];
     }
 }

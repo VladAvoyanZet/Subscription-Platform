@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\PostResource;
-use App\Models\Post;
-use App\Models\Subscriber;
 use App\Services\Post\DestroyPostService;
 use App\Services\Post\IndexPostsService;
 use App\Services\Post\ShowPostService;
@@ -20,7 +17,7 @@ class PostController extends Controller
      */
     public function index(IndexPostsService $indexPostsService)
     {
-      return  $indexPostsService->indexPosts();
+        return $indexPostsService->indexPosts();
 
     }
 
@@ -30,16 +27,16 @@ class PostController extends Controller
     public function store(Request $request, StorePostService $storePostService)
     {
         $validator = Validator::make($request->all(), [
-            'websiteId' => 'required',
-            'title' => 'required',
+            'title' => 'required|max:255',
             'description' => 'required',
+            'site_id' => 'required',
         ]);
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return response()->json([
                 'status:' => 400,
                 'message:' => 'something went wrong'
-            ],400);
-        }else {
+            ], 400);
+        } else {
 
             $storePostService->storePost($request);
         }

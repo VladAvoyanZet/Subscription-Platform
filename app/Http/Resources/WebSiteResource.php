@@ -16,7 +16,6 @@ class WebSiteResource extends JsonResource
     {
         return [
             'domain' => $this->domain,
-            'subscriber_id'   => $this->subscriber_id
         ];
     }
 }
