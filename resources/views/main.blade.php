@@ -15,6 +15,13 @@
     <div class="row">
         <form method="post"  action="/subscribe/store">
             @csrf
+            @if (\Session::has('success'))
+                <div class="alert alert-success">
+                    <ul>
+                        <li>{!! \Session::get('success') !!}</li>
+                    </ul>
+                </div>
+            @endif
             <div class="form-group">
                 <label for="exampleInputEmail1">Domain</label>
                 <input type="text" name="domain" class="form-control" id="domain" placeholder="Domain">

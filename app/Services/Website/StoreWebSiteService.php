@@ -14,7 +14,7 @@ class StoreWebSiteService
         ]);
 
         if ($response) {
-            return redirect()->route('subscribe.create');
+            return response()->json(['success'=>"Message: Subscribed successfully"]);
 
         }else {
             return response()->json(['success'=>"Message: something went wrong"]);

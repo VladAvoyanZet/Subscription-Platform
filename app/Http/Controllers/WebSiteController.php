@@ -9,7 +9,6 @@ use App\Services\Website\ShoWebSiteService;
 use App\Services\Website\StoreWebSiteService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use JetBrains\PhpStorm\NoReturn;
 
@@ -31,8 +30,8 @@ class WebSiteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    #[NoReturn] public function store(Request $request, StoreWebSiteService $webSiteController)
-    {
+     public function store(Request $request, StoreWebSiteService $webSiteController): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     {
         $validator = Validator::make($request->all(), [
             'domain' => 'required',
             'subscriber_id' => 'required',
@@ -44,7 +43,7 @@ class WebSiteController extends Controller
             ], 400);
         } else {
             $webSiteController->storeSubscriberWebSite($request);
-            return redirect()->route('subscribe.create');
+            return redirect()->route('subscribe.create')->with('success', 'Subscriber ' . $request['subscriber_id'] . ' Subscribed to ' . $request['domain'] . ' website');
         }
     }
 
