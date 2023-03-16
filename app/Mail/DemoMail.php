@@ -14,14 +14,15 @@ class DemoMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $posts;
-
+    protected $title;
+    protected $description;
     /**
      * Create a new message instance.
      */
-    public function __construct($posts)
+    public function __construct($title, $description)
     {
-        $this->posts = $posts;
+        $this->title = $title;
+        $this->description = $description;
     }
 
     /**
@@ -41,7 +42,6 @@ class DemoMail extends Mailable
     {
         return new Content(
             view: 'demoEmail'
-
         );
     }
 

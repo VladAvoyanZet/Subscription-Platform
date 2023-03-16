@@ -3,37 +3,52 @@
 namespace App\Services\Mail;
 
 use App\Jobs\EmailJob;
+use App\Mail\DemoMail;
 use App\Models\Post;
 use App\Models\Site;
 use App\Models\Subscriber;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use JetBrains\PhpStorm\NoReturn;
 
 class CheckSentStatusService
 {
-    #[NoReturn] public function checkStatus($subscribers): void
+    #[NoReturn] public function sendPosts()
     {
-        $posts = Site::with('posts')->get();
-
-        $ids = [];
-        foreach ($posts as $post) {
-            $ids[] = $post;
-        };
-        $duplicate = new DuplicateMailService();
-
-        foreach ($subscribers as $subscriber) {
-          foreach ($ids as $id) {
-                 if ($subscriber['id'] == $id->subscriber_id && $id->posts->isNotEmpty()){
-                     foreach ($id->posts as $post) {
-                         if ($subscriber['is_sent'] == 0){
-                             dispatch(new EmailJob($subscriber['email'], $id->posts));
-                              $duplicate->checkDuplicate($subscriber['id'], $post->id);
-                         }else {
-                             dd('Mail Already Sanded');
-                         }
-                     }
-                }
+     Subscriber::with('sites')->chunk(3, function ($posts){
+            foreach ($posts as $post) {
+               echo $post->email;
+              EmailJob::dispatch($post->email, $post->id, $post->site_id);
             }
-        }
+            echo '//////';
+        });
+
+
+//         Post::with('sites')->where('site_id', 'LIKE', 1)->chunk(1, function ($posts){
+//            foreach ($posts as $post) {
+//                echo $post->site_id;
+//                echo $post;
+//
+//            }
+//            echo '//////';
+//        });
+
+//        foreach ($subscribers as $subscriber) {
+//          foreach ($posts as $post) {
+//                 if ($subscriber['id'] == $post->subscriber_id && $post->posts->isNotEmpty()){
+//                     foreach ($post->posts as $post) {
+//                         if ($subscriber['is_sent'] == 0){
+//                             dispatch(new EmailJob($subscriber['email'], $post->posts));
+//                              $duplicate->checkDuplicate($subscriber['id'], $post->id);
+//                         }else {
+//                             dd('Mail Already Sanded');
+//                         }
+//                     }
+//                }
+//            }
+//        }
     }
+
+
+
 }

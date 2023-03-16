@@ -11,4 +11,9 @@ class Post extends Model
 
     protected $fillable = ['site_id', 'title', 'description'];
 
+    public function sites()
+    {
+        return $this->belongsTo(Site::class, 'site_id');
+    }
+
 }

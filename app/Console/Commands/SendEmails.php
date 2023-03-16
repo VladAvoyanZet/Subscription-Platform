@@ -5,10 +5,16 @@ namespace App\Console\Commands;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\PostController;
 use App\Http\Resources\PostResource;
+use App\Jobs\EmailJob;
 use App\Mail\DemoMail;
 use App\Models\Post;
-use App\Services\Mail\SendEmailService;
+use App\Models\Site;
+use App\Models\Subscriber;
+use App\Models\Tag;
+use App\Services\Mail\CheckSentStatusService;
+use App\Services\StoreTagsService;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use JetBrains\PhpStorm\NoReturn;
 
@@ -31,9 +37,10 @@ class SendEmails extends Command
     /**
      * Execute the console command.
      */
-    #[NoReturn] public function handle(): void
+     public function handle(): void
     {
-      $con = new MailController();
-      $con->index();
-    }
+        $checj = new CheckSentStatusService();
+        $checj->sendPosts();
+
+     }
 }
